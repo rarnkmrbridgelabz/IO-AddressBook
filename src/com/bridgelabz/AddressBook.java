@@ -1,7 +1,11 @@
 package com.bridgelabz;
-
-import java.util.*;
 import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 public class AddressBook {
 
@@ -170,12 +174,12 @@ public class AddressBook {
     // Method to create addressbook uc-6
     public AddressBook addressBookOption() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Welcome to the address book system. Choose your option");
+        System.out.println("Welcome to the address book system. Choose your option");		System.out.println("------------------------------------------------------");
         AddressBook addBook = new AddressBook();
         boolean runLoop = true;
         while (runLoop) {
             System.out.println(
-                    "Press 1 for adding contact\n Press:2 to edit a contact\n Press:3 to delete a contact\n press:4 to sort by name\n press:5 to sort by city\n press:6 to sort by state\n press:7 to exit");
+                    "Press 1 for adding contact\n Press:2 to edit a contact\n Press:3 to delete a contact\n press:4 to sort by name\n press:5 to sort by city\n press:6 to sort by state\n press:7 write from file \n press:8 readfromfile \n press 9  to exit");
             int ch = sc.nextInt();
 
             switch (ch) {
@@ -208,8 +212,16 @@ public class AddressBook {
                     System.out.println("---- sort by State ---");
                     addBook.viewSortedByState();
                     break;
-
                 case 7:
+                    System.out.println("---- write from File  ---");
+                    addBook.writeToFile(addressContactList);
+                    break;
+                case 8:
+                    System.out.println("---- Read from File ---");
+                    addBook.readFromFile();
+                    break;
+
+                case 9:
                     System.out.println("exit");
                     runLoop = false;
                     break;
@@ -220,5 +232,15 @@ public class AddressBook {
             }
         }
         return addBook;
+    }
+
+    private void readFromFile() {
+        // TODO Auto-generated method stub
+
+    }
+
+    private void writeToFile(ArrayList<AddressBookContacts> addressContactList2) {
+        // TODO Auto-generated method stub
+
     }
 }
