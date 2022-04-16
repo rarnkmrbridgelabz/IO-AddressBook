@@ -145,13 +145,28 @@ public class AddressBook {
             System.out.println("No such Contact to Delete");
         }
     }
+
     // UC11 Sorted Name by Alphabetically Order
     public void viewSortedByNames() {
         List<AddressBookContacts> sortedDetails = addressContactList.stream()
-                .sorted(Comparator.comparing(n->n.toString()))
-                .peek(n -> System.out.println(n))
+                .sorted(Comparator.comparing(n -> n.toString())).peek(n -> System.out.println(n))
                 .collect(Collectors.toList());
     }
+
+    // UC12 Sorted Name by Alphabetically Order with City Name
+    public void viewSortedByCity() {
+        List<AddressBookContacts> sortedDetailsByCity = addressContactList.stream()
+                .sorted((ab1, ab2) -> ab1.getCity().compareTo(ab2.getCity()))
+                .peek(addBook -> System.out.println(addBook)).collect(Collectors.toList());
+    }
+
+    // UC12 Sorted Name by Alphabetically Order with State Name
+    public void viewSortedByState() {
+        List<AddressBookContacts> sortedDetailsByCity = addressContactList.stream()
+                .sorted((ab1, ab2) -> ab1.getState().compareTo(ab2.getState()))
+                .peek(addBook -> System.out.println(addBook)).collect(Collectors.toList());
+    }
+
     // Method to create addressbook uc-6
     public AddressBook addressBookOption() {
         Scanner sc = new Scanner(System.in);
@@ -160,7 +175,7 @@ public class AddressBook {
         boolean runLoop = true;
         while (runLoop) {
             System.out.println(
-                    "Press 1 for adding contact\nPress:2 to edit a contact\nPress:3 to delete a contact\n press 4 to sort by name \n press 5 to exit");
+                    "Press 1 for adding contact\n Press:2 to edit a contact\n Press:3 to delete a contact\n press:4 to sort by name\n press:5 to sort by city\n press:6 to sort by state\n press:7 to exit");
             int ch = sc.nextInt();
 
             switch (ch) {
@@ -185,8 +200,16 @@ public class AddressBook {
                     System.out.println("---- sort by name ---");
                     addBook.viewSortedByNames();
                     break;
-
                 case 5:
+                    System.out.println("---- sort by city ---");
+                    addBook.viewSortedByCity();
+                    break;
+                case 6:
+                    System.out.println("---- sort by State ---");
+                    addBook.viewSortedByState();
+                    break;
+
+                case 7:
                     System.out.println("exit");
                     runLoop = false;
                     break;
