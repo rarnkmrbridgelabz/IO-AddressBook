@@ -17,6 +17,93 @@ public class AddressBook {
         addressContactList.add(createPerson);
     }
 
+    // using Method and Edit with Switch Statement
+    public void editContact() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter First Name of Contact to Edit it");
+        String contactName = sc.nextLine();
+        AddressBookContacts editContact = addressContactList.get(contactName.indexOf(contactName));
+        if (editContact.getFirstName().equals(contactName)) {
+
+            System.out.println("Which Details You Would Like To Edit ?");
+            System.out.println("Press - 1 for First Name \nPress - 2 for Last Name \n"
+                    + "Press - 3 for Address \nPress - 4 for City \nPress - 5 for State \nPress - 6 for Zip \n"
+                    + "Press - 7 for Phone No. \nPress - 8 for Email");
+
+            int choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    System.out.println("Enter New First Name");
+                    sc.nextLine();
+                    String fName = sc.nextLine();
+                    editContact.setFirstName(fName);
+                    System.out.println("Update a Sucessfully " + fName);
+                    break;
+
+                case 2:
+                    System.out.println("Enter New Last Name");
+                    sc.nextLine();
+                    String lName = sc.nextLine();
+                    editContact.setLastName(lName);
+                    System.out.println("Update a Sucessfully " + lName);
+                    break;
+
+                case 3:
+                    System.out.println("Enter New Address");
+                    sc.nextLine();
+                    String address = sc.nextLine();
+                    editContact.setAddress(address);
+                    System.out.println("Update a Sucessfully " + address);
+                    break;
+
+                case 4:
+                    System.out.println("Enter New City");
+                    sc.nextLine();
+                    String city = sc.nextLine();
+                    editContact.setCity(city);
+                    System.out.println("Update a Sucessfully " + city);
+                    break;
+
+                case 5:
+                    System.out.println("Enter New State");
+                    sc.nextLine();
+                    String state = sc.nextLine();
+                    editContact.setState(state);
+                    System.out.println("Update a Sucessfully " + state);
+                    break;
+
+                case 6:
+                    System.out.println("Enter New Zip");
+                    long zip = sc.nextLong();
+                    editContact.setZip(zip);
+                    System.out.println("Update a Sucessfully " + zip);
+                    break;
+
+                case 7:
+                    System.out.println("Enter New Phone Number");
+                    long phoneNo = sc.nextLong();
+                    editContact.setPhoneNo(phoneNo);
+                    System.out.println("Update a Sucessfully " + phoneNo);
+                    break;
+
+                case 8:
+                    System.out.println("Enter New Email");
+                    sc.nextLine();
+                    String email = sc.nextLine();
+                    editContact.setEmail(email);
+                    System.out.println("Update a Sucessfully " + email);
+                    break;
+
+                default:
+                    System.out.println("you have not choosen vaild option");
+                    return;
+
+            }
+        } else {
+            System.out.println("No such contact");
+        }
+    }
+
     // Getting Input from User
     public AddressBookContacts getContactInput() {
 
@@ -54,7 +141,7 @@ public class AddressBook {
 
         // Checking a Choice with Switch Statement
         while (true) {
-            System.out.println("1.Adding Contact \n2.Exit");
+            System.out.println("1.Adding Contact \n2.Edit Contact \n3.Exit");
             System.out.println("Enter a Your Choice :");
             ch = sc.nextInt();
 
@@ -65,8 +152,12 @@ public class AddressBook {
 
                     System.out.println("Contact Added Successfully");
                     break;
-
                 case 2:
+                    ab.editContact();
+                    System.out.println("Contact Updated Successfully");
+                    break;
+
+                case 3:
                     System.out.println("you have choosen choice to exit");
                     return;
 
