@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class AddressBook {
 
-    private ArrayList<AddressBookContacts> addressContactList;
-    private Map<String, AddressBookContacts> nameToContactDetailsMap;
+    ArrayList<AddressBookContacts> addressContactList;
+    Map<String, AddressBookContacts> nameToContactDetailsMap;
 
 
 
