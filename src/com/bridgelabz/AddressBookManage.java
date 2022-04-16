@@ -9,6 +9,7 @@ public class AddressBookManage {
 
     private Map<String, AddressBook> nameToAddressBookMap;
     List<AddressBookContacts> valuePrinted = null;
+    private int countPerson;
 
     public AddressBookManage() {
         nameToAddressBookMap = new HashMap<>();
@@ -51,6 +52,7 @@ public class AddressBookManage {
                     .peek( n -> System.out.println("Person name---"+ n.firstName + " "+ n.lastName))
                     .collect(Collectors.toList());
         });
+        countPerson = valuePrinted.size();
     }
     // UC 9 Find  the person by state
     public void findPersonByState(String stateName)
@@ -61,7 +63,8 @@ public class AddressBookManage {
                     .peek( n -> System.out.println("Person name---"+ n.firstName + " "+ n.lastName))
                     .collect(Collectors.toList());
 
-        });
+        }); //  counting the persons
+        countPerson = valuePrinted.size();
     }
 
 
@@ -96,7 +99,7 @@ public class AddressBookManage {
                 default:
                     break;
             }
-
+            System.out.println("Number of persons found = " + addBookManage.countPerson);
         }
 
     }
