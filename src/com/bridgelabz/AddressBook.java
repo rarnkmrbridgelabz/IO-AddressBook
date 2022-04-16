@@ -1,9 +1,7 @@
 package com.bridgelabz;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class AddressBook {
 
@@ -147,7 +145,13 @@ public class AddressBook {
             System.out.println("No such Contact to Delete");
         }
     }
-
+    // UC11 Sorted Name by Alphabetically Order
+    public void viewSortedByNames() {
+        List<AddressBookContacts> sortedDetails = addressContactList.stream()
+                .sorted(Comparator.comparing(n->n.toString()))
+                .peek(n -> System.out.println(n))
+                .collect(Collectors.toList());
+    }
     // Method to create addressbook uc-6
     public AddressBook addressBookOption() {
         Scanner sc = new Scanner(System.in);
@@ -156,7 +160,7 @@ public class AddressBook {
         boolean runLoop = true;
         while (runLoop) {
             System.out.println(
-                    "Press 1 for adding contact\nPress:2 to edit a contact\nPress:3 to delete a contact\n press 4 to exit");
+                    "Press 1 for adding contact\nPress:2 to edit a contact\nPress:3 to delete a contact\n press 4 to sort by name \n press 5 to exit");
             int ch = sc.nextInt();
 
             switch (ch) {
@@ -178,6 +182,11 @@ public class AddressBook {
                     break;
 
                 case 4:
+                    System.out.println("---- sort by name ---");
+                    addBook.viewSortedByNames();
+                    break;
+
+                case 5:
                     System.out.println("exit");
                     runLoop = false;
                     break;
