@@ -1,13 +1,17 @@
 package com.bridgelabz;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-
+import java.util.stream.Collectors;
 public class AddressBookManage {
+
     private Map<String, AddressBook> nameToAddressBookMap;
+    List<AddressBookContacts> valuePrinted = null;
 
     public AddressBookManage() {
+
         nameToAddressBookMap = new HashMap<>();
     }
 
@@ -15,7 +19,7 @@ public class AddressBookManage {
         nameToAddressBookMap.put(addBookName, addBook);
     }
 
-    public void createAddBooks() {
+    public boolean createAddBooks() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the num of address books to create");
         int num = sc.nextInt();
@@ -29,6 +33,7 @@ public class AddressBookManage {
             addBookObj = addBookObj.addressBookOption();
             addAddressBook(aBookName, addBookObj);
         }
+        return false;
     }
 
     public void viewAddBooks() {
@@ -37,12 +42,41 @@ public class AddressBookManage {
         }
     }
 
+    public void findPersonByCity(String cityName)
+    {
+        nameToAddressBookMap.forEach((key, addressBookValue) -> {
+            valuePrinted = addressBookValue.addressContactList.stream()
+                    .filter(n -> n.city.equals(cityName))
+                    .peek( n -> System.out.println("Person name---"+ n.firstName + " "+ n.lastName))
+                    .collect(Collectors.toList());
+        });
+    }
+
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         System.out.println("welcome and create address books ");
         AddressBookManage addBookManage = new AddressBookManage();
         addBookManage.createAddBooks();
+        boolean created = addBookManage.createAddBooks();
         System.out.println("Successfully created address books");
         addBookManage.viewAddBooks();
+
+        if (created)
+        {
+            System.out.println("Enter 1 to find by City \nEnter 2 to find by State");
+            int ch = sc.nextInt();
+            sc.nextLine();
+            switch (ch)
+            {
+                case 1:
+                    System.out.println("Enter the name of City: ");
+                    String cityName = sc.nextLine();
+                    addBookManage.findPersonByCity(cityName);
+                    break;
+
+            }
+
+        }
 
     }
 }
