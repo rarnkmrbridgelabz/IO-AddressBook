@@ -11,7 +11,6 @@ public class AddressBookManage {
     List<AddressBookContacts> valuePrinted = null;
 
     public AddressBookManage() {
-
         nameToAddressBookMap = new HashMap<>();
     }
 
@@ -36,21 +35,36 @@ public class AddressBookManage {
         return false;
     }
 
+
     public void viewAddBooks() {
         for (int i = 0; i < nameToAddressBookMap.size(); i++) {
             System.out.println(i + "Name of add. book are : " + nameToAddressBookMap);
         }
     }
 
+    // UC 8 find the person by city
     public void findPersonByCity(String cityName)
     {
-        nameToAddressBookMap.forEach((key, addressBookValue) -> {
-            valuePrinted = addressBookValue.addressContactList.stream()
+        nameToAddressBookMap.forEach((key, addresBookValue) -> {
+            valuePrinted = addresBookValue.addressContactList.stream()
                     .filter(n -> n.city.equals(cityName))
                     .peek( n -> System.out.println("Person name---"+ n.firstName + " "+ n.lastName))
                     .collect(Collectors.toList());
         });
     }
+    // UC 9 Find  the person by state
+    public void findPersonByState(String stateName)
+    {
+        nameToAddressBookMap.forEach((key, addresBookValue) -> {
+            valuePrinted = addresBookValue.addressContactList.stream()
+                    .filter(n -> n.state.equals(stateName))
+                    .peek( n -> System.out.println("Person name---"+ n.firstName + " "+ n.lastName))
+                    .collect(Collectors.toList());
+
+        });
+    }
+
+
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -74,6 +88,13 @@ public class AddressBookManage {
                     addBookManage.findPersonByCity(cityName);
                     break;
 
+                case 2:
+                    System.out.println("Enter the name of State: ");
+                    String stateName = sc.nextLine();
+                    addBookManage.findPersonByState(stateName);
+                    break;
+                default:
+                    break;
             }
 
         }
