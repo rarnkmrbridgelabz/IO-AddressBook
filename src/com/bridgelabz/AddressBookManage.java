@@ -33,7 +33,7 @@ public class AddressBookManage {
 
     public void viewAddBooks() {
         for (int i = 0; i < nameToAddressBookMap.size(); i++) {
-            System.out.println(i + ".Name of add. book are : " + nameToAddressBookMap);
+            System.out.println(i + "Name of add. book are : " + nameToAddressBookMap);
         }
     }
 
@@ -43,7 +43,6 @@ public class AddressBookManage {
         addBookManage.createAddBooks();
         System.out.println("Successfully created address books");
         addBookManage.viewAddBooks();
-
 
     }
 }
